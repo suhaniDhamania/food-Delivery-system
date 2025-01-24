@@ -13,7 +13,7 @@ const menuRouter = require("./routes/menu");
 const orderRouter=require("./routes/order.js")
 const User = require("./Models/user");
 const Menu = require("./Models/menu");
-const ejsMate = require("ejs-Mate");
+const ejsMate = require('ejs-mate');
 app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "/views"));
 app.use(express.static(path.join(__dirname, "public")));
