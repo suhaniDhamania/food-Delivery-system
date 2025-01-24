@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>food app</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+ <style>
+  .navbar {
+    background-color:#f6093c;
+    
+}
+.nav-link{
+  color:white;
+}
+ </style>
+  <body>
+    <nav class="navbar navbar-expand-md border-bottom sticky-top ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/menu"><i class="fa-regular fa-compass"></i></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/menu">Explore</a>  
+          </div>
+
+      
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="/menu/new">Add your menu</a>
+            <a class="nav-link" href="/allorder">All order</a>
+
+            
+            <%if(!currUser){%>
+<a class="nav-link" aria-current="page" href="/Register"><b>sign up</b></a>
+<a class="nav-link" href="/login"><b>Login</b></a>
+           <% }%>
+              
+            
+             <%if(currUser){%>
+              <a class="nav-link" href="/logout"><b>logout</b></a>
+             <%}%>
+             
+           
+           
+            
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

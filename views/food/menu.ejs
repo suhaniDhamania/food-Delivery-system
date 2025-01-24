@@ -1,0 +1,30 @@
+<% layout("/layouts/boilerplate.ejs")%>
+
+<h1>food Menu</h1>
+
+
+
+<div class="container">
+    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 g-3">
+        <% for(list of menulist) { %>
+        <div class="col">
+            <div class="card h-100">
+                <img src="<%= list.image.url %>" class="card-img-top" alt="<%= list.name %>" style="height: 200px;">
+                <div class="card-body">
+                    <h5 class="card-title"><b>name:</b><%= list.name %></h5>
+                    <p class="card-text"><b>Category:</b><%= list.category %></p>
+                    <p class="card-text"><b>price:</b> <%= list.price %></p>
+                    <p class="card-text"><b>Availability:</b><%=list.availability%></p>
+                   <a  href="/menu/<%=list._id%>" class="btn btn-primary">
+                    show item
+                   </a>
+                   &nbsp;&nbsp;
+                   <a  href="/order" class="btn btn-primary">
+                    place order
+                   </a>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>

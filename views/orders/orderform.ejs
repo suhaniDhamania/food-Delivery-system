@@ -1,0 +1,45 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<h2>ADD order</h2>
+<body>
+  <form method="POST" action="/order" novalidate class="needs-validation" >
+    <div class="row">
+    
+      <h3>Order Items:</h3>
+      <div class="item">
+          <label for="menuId">Menu Item:</label>
+          <input name="order[items][0][menuId]" id="menuId" required>
+          <label for="quantity">Quantity:</label>
+          <input type="number" name="order[items][0][quantity]" id="quantity" required min="1" />
+       </div>
+       </div>
+
+      <br/><br/>
+      <div>
+        <label for="totalAmount" class="form-label">Total-Amount:</label>
+        <input id="totalAmount" name="order[totalAmount]"  placeholder="eneter amount" class="form-control" type="text" required/>
+      </div>
+   
+      <br/>
+    <div>
+      <label for="status" class="form-label">Status:</label>
+      <input id="status" name="order[status]" type="text" class="form-control" placeholder="enter status" required />
+      <div class="valid-feedback">enter the status!</div>
+    </div>
+    
+    <br /><br/>
+    <div>
+      <label for="date" class="form-label">Date:</label>
+      <input id="date" name="order[date]" type="text" class="form-control" placeholder="enter status" value="<%= new Date().toLocaleDateString('en-GB') %>" required />
+      
+    </div>
+    <br/><br/>
+    <button class="btn btn-primary">ADD Menu</button>
+    
+  </form>
+  <br/>
+
+
+</body>
+
+
+

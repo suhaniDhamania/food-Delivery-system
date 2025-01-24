@@ -1,0 +1,22 @@
+
+
+    .btn{
+        background-color: #f6093c !important ;
+        color:#ffffff !important; 
+        border: 2px solid #ffffff !important;
+    }
+    
+    .btn:hover{
+        background-color: #ffffff !important ;
+        color:#f6093c !important; 
+        border:2px solid #f6093c !important;
+    }
+
+    .footer{
+
+        background-color: #f6093c;
+        display: flex;
+        flex-direction: column;
+        
+        padding:10px;
+    }

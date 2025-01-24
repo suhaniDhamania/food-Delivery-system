@@ -1,0 +1,17 @@
+<%layout("/layouts/boilerplate.ejs")%>
+
+<div class="container">
+    <h1 class="text-success">order placed!</h1>
+        
+    <h3><b>userId : </b><%=neworder.userId._id%></h3>
+   <h6><b>order-id : </b><%=neworder.id%></h6>
+   <% neworder.items.forEach(item => { %>
+    <ul>
+        <li><b>MenuId : </b><%= item.menuId %></li>
+        <li><b>quantity : </b><%= item.quantity %></li>
+    </ul>
+<% }); %>
+<p><b>Total-Amount : </b><%=neworder.totalAmount%></p>
+<p><b>status : </b><%=neworder.status%></p>
+<p><b>Date : </b><%=neworder.createdAt%></p>
+</div>

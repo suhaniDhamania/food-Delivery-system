@@ -1,0 +1,24 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<body>
+
+    <h1 class="name"> Name :<%= menuitem.name%></h1>
+
+    <div class="card" style="width: 30rem;">
+        <img src="<%=menuitem.image.url%>" class="card-img-top" alt="..." height="250rem" >
+        <div class="card-body">
+            <h3>id :<%= menuitem._id%></h3>
+            <p><b>price:</b><%=menuitem.price%></p>
+            <p class="user-name"><b>category:</b><%=menuitem.category%></p>
+          <p class="user-title"><b>availability:</b><%=menuitem.availability%></p>
+          <div class="row row-cols-lg-4">
+          <form method="GET" action="/menu/<%=menuitem._id%>/edit">
+            <button class="btn btn-primary m-3">EDIT</button>
+           </form>
+
+        <form method="POST" action="/menu/<%=menuitem._id%>?_method=DELETE">
+            <button class="btn btn-primary m-3">DELETE</button>  
+      </form>
+          </div>
+         
+        </div>
+      </div>

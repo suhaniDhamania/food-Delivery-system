@@ -1,0 +1,36 @@
+<% layout("/layouts/boilerplate.ejs")%>
+
+<h1>All order</h1>
+
+
+
+<div class="container">
+    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 g-3">
+        <% for(order of allOrders) { %>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                  
+                    <p class="card-text"><b>order-Id:</b> <%= order._id %></p>
+                    <ul>items:<li><b>MenuId :</b>6793af4a54f1436d75d70e5b</li>
+                        <li><b>quantity :</b>6</li></ul>
+                        
+                  
+                
+                    <p class="card-text"><b>totalAmount:</b><%= order.totalAmount %></p>
+                    <p class="card-text"><b>status:</b><%= order.status %></p>
+                    <% if (order.userId) { %>
+                        <p class="card-text"><b>User ID:</b><%= order.userId._id %></p>
+                      <% } else { %>
+                        <p class="card-text"><b>User Id:</b> Not available</p>
+                      <% } %>
+                    <p class="card-text"><b>createdAt:</b><%= order.createdAt %></p>
+                   
+                    
+                  
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
