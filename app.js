@@ -1,7 +1,8 @@
-
-if(process.env.NODE_ENV != "production"){
+// dotenv को लोड करो अगर environment production नहीं है
+if (process.env.NODE_ENV !== "production") {
   require('dotenv').config();
 }
+
 console.log(process.env.SECRET);
 
 const express = require("express");
@@ -10,7 +11,7 @@ const path = require("path");
 const app = express();
 const userRouter = require("./routes/user");
 const menuRouter = require("./routes/menu");
-const orderRouter=require("./routes/order.js")
+const orderRouter = require("./routes/order.js");
 const User = require("./Models/user");
 const Menu = require("./Models/menu");
 const ejsMate = require('ejs-mate');
@@ -28,17 +29,22 @@ app.use(cookieParser());
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
 
-const store=MongoStore.create({
-  mongoUrl:DBUrl,
-  crypto:{
-    secret:process.env.SECRET,
-  },
-  touchAfter:24*3600,
-})
+// पहले DBUrl को initialize करो
+const DBUrl = process.env.ATLASDB_URL;
 
-store.on("error",()=>{
-  console.log("error in mongo session store")
+// MongoStore को initialize करो
+const store = MongoStore.create({
+  mongoUrl: DBUrl,  // अब DBUrl पहले initialize हो चुका है
+  crypto: {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 3600,
 });
+
+store.on("error", () => {
+  console.log("error in mongo session store");
+});
+
 app.use(
   session({
     secret: process.env.SECRET,
@@ -52,16 +58,13 @@ app.use(
     store,
   })
 );
+
 const flash = require("connect-flash");
 app.use(flash());
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
-
 app.set("view engine", "ejs");
-
-const DBUrl=process.env.ATLASDB_URL;
-
 
 main()
   .then(() => {
@@ -81,32 +84,29 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use((req,res,next)=>{
-    res.locals.success=req.flash("success");
-    res.locals.error=req.flash("error");
-    res.locals.currUser=req.user;
-    next();
-})
-
-
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currUser = req.user;
+  next();
+});
 
 app.use("/", userRouter);
-
-app.use("/menu",menuRouter);
-
-app.use("/",orderRouter);
-
-
+app.use("/menu", menuRouter);
+app.use("/", orderRouter);
 
 app.all("*", (req, res, next) => {
-    next(new ExpressError(404, "page not found"));
-  });
-  
-  app.use((err, req, res, next) => {
-    let { StatusCode = 500, message = "something went wrong" } = err;
-    res.status(StatusCode).render("error.ejs", { message });
-  });
+  next(new ExpressError(404, "page not found"));
+});
+
+app.use((err, req, res, next) => {
+  let { StatusCode = 500, message = "something went wrong" } = err;
+  res.status(StatusCode).render("error.ejs", { message });
+});
 
 app.listen(5000, () => {
   console.log("listening port to 5000");
 });
+
+
+
